@@ -1,14 +1,9 @@
 import telegram
 import os
-#import telebot
-#from telebot import types
-#from telegram import ReplyMarkup
+
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,ConversationHandler)
 
-#bot = telebot.TeleBot('662816784:AAHRzBAXtllAgb99yJZKb55RRO34fQN4mxQ')
-
-#@bot.message_handler(commands=['start'])
 EMPLOYEES, EMPLOYEES2, EMPLOYEES3 = range(3)
 def start(bot,update):
         keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard=True)
@@ -36,29 +31,26 @@ def done(bot, update, user_data):
 #bot.polling(none_stop=True, interval=0)
 
 if __name__ == "__main__":
-        try:
-                TOKEN='767098275:AAEgMW2GoiN3v7-yDrvUASsjHyLZb1fuE2o'
-                updater = Updater(TOKEN)
-                dp = updater.dispatcher
-                conv_handler = ConversationHandler(
-                        entry_points=[CommandHandler('start', start)],
-                        states={
-                                EMPLOYEES: [MessageHandler(Filters.text, emp_group, pass_user_data=True),],
-                                EMPLOYEES2: [MessageHandler(Filters.text, emp_group2, pass_user_data=True),],
-                                EMPLOYEES3: [MessageHandler(Filters.text, emp_group3, pass_user_data=True),],
-                        },
-                        fallbacks=[RegexHandler('^Done$', done, pass_user_data=True)]
-                )
-                dp.add_handler(conv_handler)
-                NAME = "zhankin-tele2-data"
-                PORT = int(os.environ.get('PORT'))
+        TOKEN='767098275:AAEgMW2GoiN3v7-yDrvUASsjHyLZb1fuE2o'
+        updater = Updater(TOKEN)
+        dp = updater.dispatcher
+        conv_handler = ConversationHandler(
+                entry_points=[CommandHandler('start', start)],
+                states={
+                        EMPLOYEES: [MessageHandler(Filters.text, emp_group, pass_user_data=True),],
+                        EMPLOYEES2: [MessageHandler(Filters.text, emp_group2, pass_user_data=True),],
+                        EMPLOYEES3: [MessageHandler(Filters.text, emp_group3, pass_user_data=True),],
+                },
+                fallbacks=[RegexHandler('^Done$', done, pass_user_data=True)]
+        )
+        dp.add_handler(conv_handler)
+        NAME = "zhankin-tele2-data"
+        PORT = int(os.environ.get('PORT'))
                 #updater.start_webhook(listen="0.0.0.0",port=80,url_path=TOKEN,cert='webhook_cert.pem', key='webhook_pkey.key',webhook_url='https://81.211.150.236/'+TOKEN)
                 #updater.bot.setWebhook("https://81.211.150.236/",certificate='webhook_cert.pem')
                 #updater.start_polling(poll_interval=0.0, timeout=10, clean=False, bootstrap_retries=-1, read_latency=2.0, allowed_updates=None)
-                updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=TOKEN)
-                updater.bot.setWebhook("https://{}.herokuapp.com/{}".format(NAME, TOKEN))
-                updater.idle()
-        except KeyboardInterrupt:
-                pass
+        updater.start_webhook(listen="0.0.0.0",
+                  port=int(PORT),
+                  url_path=TOKEN)
+        updater.bot.setWebhook("https://{}.herokuapp.com/{}".format(NAME, TOKEN))
+        updater.idle()
