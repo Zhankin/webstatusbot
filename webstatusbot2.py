@@ -14,7 +14,7 @@ def start(bot,update):
 	#reply_markup=telegram.ReplyKeyboardMarkup(kb, resize_keyboard=True,one_time_keyboard=True)
 	#update.message.reply_text("Please share your contact", reply_markup=reply_markup)
 	#print (update.message.text)
-	reply_keyboard = [['test']]
+	reply_keyboard = [[telegram.KeyboardButton('Share my contact',request_contact=True)]]
 	markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=False)
 	update.message.reply_text("Choose your destiny!",reply_markup=markup)
 	return EMPLOYEES
