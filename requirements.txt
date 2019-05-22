@@ -1,6 +1,2 @@
-
 python-telegram-bot
-pandas
-matplotlib
-numpy
 requests
