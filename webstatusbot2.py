@@ -6,7 +6,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 
 EMPLOYEES, EMPLOYEES2, EMPLOYEES3 = range(3)
 def start(bot,update):
-        update.message.reply_text("hi")
+        #update.message.reply_text("hi")
         
         #keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard=True)
         #reg_button = types.KeyboardButton(text="Share my contact", request_contact=True)
