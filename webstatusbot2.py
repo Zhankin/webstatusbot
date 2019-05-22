@@ -8,6 +8,14 @@ EMPLOYEES, EMPLOYEES2, EMPLOYEES3 = range(3)
 def start(bot,update):
         update.message.reply_text("hi")
         
+        #keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard=True)
+        #reg_button = types.KeyboardButton(text="Share my contact", request_contact=True)
+        #keyboard.add(reg_button)
+        
+        kb = [[telegram.KeyboardButton('Share my contact',request_contact=True)]]
+        reply_markup=telegram.ReplyKeyboardMarkup(kb, resize_keyboard=True,one_time_keyboard=True)
+
+        update.message.reply_text("Please share your contact", reply_markup=reply_markup)
         return EMPLOYEES
 
 def emp_group(bot,update,user_data):
