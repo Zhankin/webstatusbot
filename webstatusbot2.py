@@ -6,24 +6,18 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 
 EMPLOYEES, EMPLOYEES2, EMPLOYEES3 = range(3)
 def start(bot,update):
-        #update.message.reply_text("hi")
-        
-        #keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard=True)
-        #reg_button = types.KeyboardButton(text="Share my contact", request_contact=True)
-        #keyboard.add(reg_button)
-        
-        #kb = [[telegram.KeyboardButton('Share my contact',request_contact=True)]]
-        #reply_markup=telegram.ReplyKeyboardMarkup(kb, resize_keyboard=True,one_time_keyboard=True)
-
-        #update.message.reply_text("Please share your contact", reply_markup=reply_markup)
-        #print (update.message.text)
-        
-        
-        reply_keyboard = [['test']]
+	#update.message.reply_text("hi")
+	#keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard=True)
+	#reg_button = types.KeyboardButton(text="Share my contact", request_contact=True)
+	#keyboard.add(reg_button)
+	#kb = [[telegram.KeyboardButton('Share my contact',request_contact=True)]]
+	#reply_markup=telegram.ReplyKeyboardMarkup(kb, resize_keyboard=True,one_time_keyboard=True)
+	#update.message.reply_text("Please share your contact", reply_markup=reply_markup)
+	#print (update.message.text)
+	reply_keyboard = [['test']]
 	markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=False)
 	update.message.reply_text("Choose your destiny!",reply_markup=markup)
-        
-        return EMPLOYEES
+	return EMPLOYEES
 
 def emp_group(bot,update,user_data):
         print ('!!!!')
