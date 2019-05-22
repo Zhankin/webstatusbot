@@ -16,12 +16,12 @@ def start(bot,update):
         reply_markup=telegram.ReplyKeyboardMarkup(kb, resize_keyboard=True,one_time_keyboard=True)
 
         update.message.reply_text("Please share your contact", reply_markup=reply_markup)
-        print update.message.text
+        print (update.message.text)
         return EMPLOYEES
 
 def emp_group(bot,update,user_data):
-        print '!!!!'
-        print update.message.text
+        print ('!!!!')
+        print (update.message.text)
         update.message.reply_text("Hello collegue!")
 def emp_group2(bot,update,user_data):
         update.message.reply_text("Hello collegue!")
