@@ -15,8 +15,8 @@ def start(bot,update):
 	#update.message.reply_text("Please share your contact", reply_markup=reply_markup)
 	#print (update.message.text)
 	reply_keyboard = [[telegram.KeyboardButton('Share my contact',request_contact=True)]]
-	markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=False)
-	update.message.reply_text("Choose your destiny!",reply_markup=markup)
+	markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+	update.message.reply_text("Please share your contact",reply_markup=markup)
 	return EMPLOYEES
 
 def emp_group(bot,update,user_data):
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         conv_handler = ConversationHandler(
                 entry_points=[CommandHandler('start', start)],
                 states={
-                        EMPLOYEES: [MessageHandler(Filters.text, emp_group, pass_user_data=True),],
+                        EMPLOYEES: [MessageHandler(Filters.all, emp_group, pass_user_data=True),],
                         EMPLOYEES2: [MessageHandler(Filters.text, emp_group2, pass_user_data=True),],
                         EMPLOYEES3: [MessageHandler(Filters.text, emp_group3, pass_user_data=True),],
                 },
