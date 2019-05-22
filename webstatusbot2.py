@@ -36,7 +36,7 @@ def done(bot, update, user_data):
 
 if __name__ == "__main__":
         try:
-                TOKEN='662816784:AAHRzBAXtllAgb99yJZKb55RRO34fQN4mxQ'
+                TOKEN='767098275:AAEgMW2GoiN3v7-yDrvUASsjHyLZb1fuE2o'
                 updater = Updater(TOKEN)
                 dp = updater.dispatcher
                 conv_handler = ConversationHandler(
@@ -49,9 +49,15 @@ if __name__ == "__main__":
                         fallbacks=[RegexHandler('^Done$', done, pass_user_data=True)]
                 )
                 dp.add_handler(conv_handler)
-                updater.start_webhook(listen="0.0.0.0",port=80,url_path=TOKEN,cert='webhook_cert.pem', key='webhook_pkey.key',webhook_url='https://81.211.150.236/'+TOKEN)
+                NAME = "zhankin-tele2-data"
+                PORT = int(os.environ.get('PORT'))
+                #updater.start_webhook(listen="0.0.0.0",port=80,url_path=TOKEN,cert='webhook_cert.pem', key='webhook_pkey.key',webhook_url='https://81.211.150.236/'+TOKEN)
                 #updater.bot.setWebhook("https://81.211.150.236/",certificate='webhook_cert.pem')
                 #updater.start_polling(poll_interval=0.0, timeout=10, clean=False, bootstrap_retries=-1, read_latency=2.0, allowed_updates=None)
+                updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=TOKEN)
+                updater.bot.setWebhook("https://{}.herokuapp.com/{}".format(NAME, TOKEN))
                 updater.idle()
         except KeyboardInterrupt:
                 pass
